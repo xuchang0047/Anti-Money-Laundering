@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ccem.local/schemas/validation_report_v0.2.schema.json",
+  "title": "ValidationReport v0.2",
+  "type": "object",
+  "required": ["schema_version", "case_id", "attack_id", "accepted", "decision_rule", "decision_reasons", "validation_target", "method", "aggregate", "diagnostics", "refuters", "counterfactuals", "validator_version", "parameter_hash", "created_at"],
+  "properties": {
+    "schema_version": {"const": "ccem.validation_report/v0.2"},
+    "case_id": {"type": "string", "minLength": 1},
+    "attack_id": {"type": ["string", "null"]},
+    "accepted": {"type": "boolean"},
+    "validation_target": {"enum": ["aml_outcome", "model_behavior"]},
+    "aggregate": {
+      "type": "object",
+      "required": ["effect_size", "ci95", "sample_size", "treated_n", "control_n"],
+      "properties": {
+        "effect_size": {"type": "number"},
+        "ci95": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number"}}
+      }
+    },
+    "counterfactuals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["intervention", "result"],
+        "properties": {"intervention": {"type": "object", "required": ["type"]}, "result": {"type": "object"}}
+      }
+    }
+  }
+}

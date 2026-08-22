@@ -1,0 +1,209 @@
+{
+  "experiences": [
+    {
+      "constraints": {},
+      "experience_id": "ibm_baseline_fan_in",
+      "family": "fan_in",
+      "fingerprint": {
+        "wl_hash": "baseline::fan_in"
+      },
+      "lineage": {
+        "mutation_ops": [],
+        "parent": null,
+        "round": 0
+      },
+      "matcher_kind": "descriptor_only/v1",
+      "roles": {},
+      "source": "IBM_AMLSim_typology_registry",
+      "status": "active",
+      "version": 1
+    },
+    {
+      "constraints": {},
+      "experience_id": "ibm_baseline_fan_out",
+      "family": "fan_out",
+      "fingerprint": {
+        "wl_hash": "baseline::fan_out"
+      },
+      "lineage": {
+        "mutation_ops": [],
+        "parent": null,
+        "round": 0
+      },
+      "matcher_kind": "descriptor_only/v1",
+      "roles": {},
+      "source": "IBM_AMLSim_typology_registry",
+      "status": "active",
+      "version": 1
+    },
+    {
+      "constraints": {},
+      "experience_id": "ibm_baseline_cycle",
+      "family": "cycle",
+      "fingerprint": {
+        "wl_hash": "baseline::cycle"
+      },
+      "lineage": {
+        "mutation_ops": [],
+        "parent": null,
+        "round": 0
+      },
+      "matcher_kind": "descriptor_only/v1",
+      "roles": {},
+      "source": "IBM_AMLSim_typology_registry",
+      "status": "active",
+      "version": 1
+    },
+    {
+      "constraints": {},
+      "experience_id": "ibm_baseline_bipartite",
+      "family": "bipartite",
+      "fingerprint": {
+        "wl_hash": "baseline::bipartite"
+      },
+      "lineage": {
+        "mutation_ops": [],
+        "parent": null,
+        "round": 0
+      },
+      "matcher_kind": "descriptor_only/v1",
+      "roles": {},
+      "source": "IBM_AMLSim_typology_registry",
+      "status": "active",
+      "version": 1
+    },
+    {
+      "constraints": {},
+      "experience_id": "ibm_baseline_stack",
+      "family": "stack",
+      "fingerprint": {
+        "wl_hash": "baseline::stack"
+      },
+      "lineage": {
+        "mutation_ops": [],
+        "parent": null,
+        "round": 0
+      },
+      "matcher_kind": "descriptor_only/v1",
+      "roles": {},
+      "source": "IBM_AMLSim_typology_registry",
+      "status": "active",
+      "version": 1
+    },
+    {
+      "constraints": {},
+      "experience_id": "ibm_baseline_random",
+      "family": "random",
+      "fingerprint": {
+        "wl_hash": "baseline::random"
+      },
+      "lineage": {
+        "mutation_ops": [],
+        "parent": null,
+        "round": 0
+      },
+      "matcher_kind": "descriptor_only/v1",
+      "roles": {},
+      "source": "IBM_AMLSim_typology_registry",
+      "status": "active",
+      "version": 1
+    },
+    {
+      "constraints": {},
+      "experience_id": "ibm_baseline_scatter_gather",
+      "family": "scatter_gather",
+      "fingerprint": {
+        "wl_hash": "baseline::scatter_gather"
+      },
+      "lineage": {
+        "mutation_ops": [],
+        "parent": null,
+        "round": 0
+      },
+      "matcher_kind": "descriptor_only/v1",
+      "roles": {},
+      "source": "IBM_AMLSim_typology_registry",
+      "status": "active",
+      "version": 1
+    },
+    {
+      "constraints": {
+        "minimum_fan": 3
+      },
+      "experience_id": "ibm_baseline_gather_scatter",
+      "family": "gather_scatter",
+      "fingerprint": {
+        "wl_hash": "baseline::gather_scatter"
+      },
+      "lineage": {
+        "mutation_ops": [],
+        "parent": null,
+        "round": 0
+      },
+      "matcher_kind": "single_hub_gather_scatter/v1",
+      "roles": {
+        "hub": {
+          "count": 1
+        },
+        "sinks": {
+          "min_count": 3
+        },
+        "sources": {
+          "min_count": 3
+        }
+      },
+      "source": "IBM_AMLSim_typology_registry",
+      "status": "active",
+      "version": 1
+    }
+  ],
+  "history": [],
+  "knowledge_graph": {
+    "design": "G_t_transaction_facts_separate_from_K_t_experiences",
+    "edges": [
+      {
+        "dst": "ibm_baseline_fan_in",
+        "relation": "defines_typology",
+        "src": "IBM_AMLSim"
+      },
+      {
+        "dst": "ibm_baseline_fan_out",
+        "relation": "defines_typology",
+        "src": "IBM_AMLSim"
+      },
+      {
+        "dst": "ibm_baseline_cycle",
+        "relation": "defines_typology",
+        "src": "IBM_AMLSim"
+      },
+      {
+        "dst": "ibm_baseline_bipartite",
+        "relation": "defines_typology",
+        "src": "IBM_AMLSim"
+      },
+      {
+        "dst": "ibm_baseline_stack",
+        "relation": "defines_typology",
+        "src": "IBM_AMLSim"
+      },
+      {
+        "dst": "ibm_baseline_random",
+        "relation": "defines_typology",
+        "src": "IBM_AMLSim"
+      },
+      {
+        "dst": "ibm_baseline_scatter_gather",
+        "relation": "defines_typology",
+        "src": "IBM_AMLSim"
+      },
+      {
+        "dst": "ibm_baseline_gather_scatter",
+        "relation": "defines_typology",
+        "src": "IBM_AMLSim"
+      }
+    ]
+  },
+  "library_hash": "df95be70b0f6edee8e511be64f1d86b10cfc29f7464cd7da0b5d39d9847fce28",
+  "library_version": 0,
+  "schema_version": "ccem.detector_library/v0.2"
+}

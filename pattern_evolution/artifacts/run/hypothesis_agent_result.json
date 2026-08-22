@@ -1,0 +1,36 @@
+{
+  "api_type": "0",
+  "hypothesis": {
+    "expected_invariants": [
+      "Number of sources ≥ 3, sink nodes ≥ 3",
+      "Exactly one collector and one relay node",
+      "Temporal order: sources → collector → relay → sinks",
+      "Bridge ratio > 0.9 on incoming and outgoing relay edges"
+    ],
+    "hypothesis_name": "Gather-Relay-Broadcast Flow",
+    "limitations": [
+      "Assumes a single relay path; multiple relays would alter pattern",
+      "Does not capture reversed or cyclic flows",
+      "Role assignment depends on structural alignment; may not generalize to overlapping communities"
+    ],
+    "mechanism": "Multiple source nodes concentrate traffic into a single collector, which passes aggregated data to one relay node; the relay then fans out to at least three sink nodes. The high bridge ratio (≥0.95) indicates that nearly all edges cross distinct clusters or communities, enforcing a strict sequential dependency from sources through collector and relay to sinks."
+  },
+  "model": "deepseek/deepseek-v4-flash",
+  "raw_content": "{\n  \"hypothesis_name\": \"Gather-Relay-Broadcast Flow\",\n  \"mechanism\": \"Multiple source nodes concentrate traffic into a single collector, which passes aggregated data to one relay node; the relay then fans out to at least three sink nodes. The high bridge ratio (≥0.95) indicates that nearly all edges cross distinct clusters or communities, enforcing a strict sequential dependency from sources through collector and relay to sinks.\",\n  \"expected_invariants\": [\n    \"Number of sources ≥ 3, sink nodes ≥ 3\",\n    \"Exactly one collector and one relay node\",\n    \"Temporal order: sources → collector → relay → sinks\",\n    \"Bridge ratio > 0.9 on incoming and outgoing relay edges\"\n  ],\n  \"limitations\": [\n    \"Assumes a single relay path; multiple relays would alter pattern\",\n    \"Does not capture reversed or cyclic flows\",\n    \"Role assignment depends on structural alignment; may not generalize to overlapping communities\"\n  ]\n}",
+  "status": "success",
+  "usage": {
+    "completion_tokens": 592,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 386,
+      "rejected_prediction_tokens": 0,
+      "text_tokens": 0,
+      "video_tokens": 0
+    },
+    "prompt_tokens": 324,
+    "prompt_tokens_details": null,
+    "total_tokens": 916
+  }
+}

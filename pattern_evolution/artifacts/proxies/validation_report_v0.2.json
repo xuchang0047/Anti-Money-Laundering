@@ -1,0 +1,125 @@
+{
+  "accepted": true,
+  "adjustment_set": [
+    "edge_count",
+    "duration",
+    "total_amount"
+  ],
+  "aggregate": {
+    "ci95": [
+      0.18,
+      0.44
+    ],
+    "control_n": 64,
+    "effect_size": 0.31,
+    "p_value": 0.008,
+    "q_value": 0.012,
+    "sample_size": 128,
+    "treated_n": 64
+  },
+  "analysis_unit": "subgraph",
+  "attack_id": "attack_proxy_0001",
+  "case_id": "proxy_relay_bridge_0001",
+  "counterfactuals": [
+    {
+      "intervention": {
+        "edge_ids": [
+          "mut_e04"
+        ],
+        "type": "remove_edges"
+      },
+      "name": "bridge_removal",
+      "result": {
+        "matched_after": false,
+        "score_drop": 1.0
+      }
+    },
+    {
+      "intervention": {
+        "rewires": [
+          {
+            "edge_id": "mut_e04",
+            "new_dst": "IBM-HI-Proxy::B00::normal",
+            "new_src": "IBM-HI-Proxy::B00::collector"
+          }
+        ],
+        "type": "rewire_edges"
+      },
+      "name": "degree_preserving_rewire",
+      "result": {
+        "matched_after": false,
+        "score_drop": 1.0
+      }
+    },
+    {
+      "intervention": {
+        "random_seed": 42,
+        "timestamp_mapping": {
+          "mut_e04": 3600,
+          "mut_e05": 3000,
+          "mut_e06": 3060,
+          "mut_e07": 3120
+        },
+        "type": "shuffle_timestamps"
+      },
+      "name": "temporal_reversal",
+      "result": {
+        "matched_after": false,
+        "score_drop": 0.75
+      }
+    },
+    {
+      "intervention": {
+        "amount_mapping": {
+          "mut_e04": {
+            "base_amount": 120.0
+          },
+          "mut_e08": {
+            "base_amount": 2850.0
+          }
+        },
+        "random_seed": 42,
+        "type": "permute_amounts"
+      },
+      "name": "amount_permutation",
+      "result": {
+        "matched_after": false,
+        "score_drop": 0.65
+      }
+    }
+  ],
+  "created_at": "2026-08-22T12:10:00Z",
+  "decision_reasons": [
+    "positive_effect",
+    "counterfactuals_break_pattern",
+    "refuters_stable"
+  ],
+  "decision_rule": "model-behavior-counterfactual-acceptance/v0.2",
+  "diagnostics": {
+    "amount_evidence": "dual_endpoint",
+    "effective_sample_size": 128,
+    "max_unstabilized_ipw": 1.0,
+    "propensity_overlap": 1.0
+  },
+  "estimand": "score_difference",
+  "expected_direction": "positive",
+  "method": "deterministic.counterfactual_replay",
+  "minimum_effect": 0.2,
+  "outcome": "compiled_detector_score",
+  "parameter_hash": "8714a6381acc4d4037121b4541fdff881ed7c19c346f4f4eaea5afd6b28f8ecf",
+  "refuters": {
+    "data_subset": {
+      "passed": true
+    },
+    "placebo_treatment": {
+      "passed": true
+    },
+    "random_common_cause": {
+      "passed": true
+    }
+  },
+  "schema_version": "ccem.validation_report/v0.2",
+  "treatment": "relay_bridge_member",
+  "validation_target": "model_behavior",
+  "validator_version": "0.2.0"
+}

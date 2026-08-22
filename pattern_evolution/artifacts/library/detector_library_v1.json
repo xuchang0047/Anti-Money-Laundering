@@ -1,0 +1,380 @@
+{
+  "experiences": [
+    {
+      "constraints": {},
+      "experience_id": "ibm_baseline_fan_in",
+      "family": "fan_in",
+      "fingerprint": {
+        "wl_hash": "baseline::fan_in"
+      },
+      "lineage": {
+        "mutation_ops": [],
+        "parent": null,
+        "round": 0
+      },
+      "matcher_kind": "descriptor_only/v1",
+      "roles": {},
+      "source": "IBM_AMLSim_typology_registry",
+      "status": "active",
+      "version": 1
+    },
+    {
+      "constraints": {},
+      "experience_id": "ibm_baseline_fan_out",
+      "family": "fan_out",
+      "fingerprint": {
+        "wl_hash": "baseline::fan_out"
+      },
+      "lineage": {
+        "mutation_ops": [],
+        "parent": null,
+        "round": 0
+      },
+      "matcher_kind": "descriptor_only/v1",
+      "roles": {},
+      "source": "IBM_AMLSim_typology_registry",
+      "status": "active",
+      "version": 1
+    },
+    {
+      "constraints": {},
+      "experience_id": "ibm_baseline_cycle",
+      "family": "cycle",
+      "fingerprint": {
+        "wl_hash": "baseline::cycle"
+      },
+      "lineage": {
+        "mutation_ops": [],
+        "parent": null,
+        "round": 0
+      },
+      "matcher_kind": "descriptor_only/v1",
+      "roles": {},
+      "source": "IBM_AMLSim_typology_registry",
+      "status": "active",
+      "version": 1
+    },
+    {
+      "constraints": {},
+      "experience_id": "ibm_baseline_bipartite",
+      "family": "bipartite",
+      "fingerprint": {
+        "wl_hash": "baseline::bipartite"
+      },
+      "lineage": {
+        "mutation_ops": [],
+        "parent": null,
+        "round": 0
+      },
+      "matcher_kind": "descriptor_only/v1",
+      "roles": {},
+      "source": "IBM_AMLSim_typology_registry",
+      "status": "active",
+      "version": 1
+    },
+    {
+      "constraints": {},
+      "experience_id": "ibm_baseline_stack",
+      "family": "stack",
+      "fingerprint": {
+        "wl_hash": "baseline::stack"
+      },
+      "lineage": {
+        "mutation_ops": [],
+        "parent": null,
+        "round": 0
+      },
+      "matcher_kind": "descriptor_only/v1",
+      "roles": {},
+      "source": "IBM_AMLSim_typology_registry",
+      "status": "active",
+      "version": 1
+    },
+    {
+      "constraints": {},
+      "experience_id": "ibm_baseline_random",
+      "family": "random",
+      "fingerprint": {
+        "wl_hash": "baseline::random"
+      },
+      "lineage": {
+        "mutation_ops": [],
+        "parent": null,
+        "round": 0
+      },
+      "matcher_kind": "descriptor_only/v1",
+      "roles": {},
+      "source": "IBM_AMLSim_typology_registry",
+      "status": "active",
+      "version": 1
+    },
+    {
+      "constraints": {},
+      "experience_id": "ibm_baseline_scatter_gather",
+      "family": "scatter_gather",
+      "fingerprint": {
+        "wl_hash": "baseline::scatter_gather"
+      },
+      "lineage": {
+        "mutation_ops": [],
+        "parent": null,
+        "round": 0
+      },
+      "matcher_kind": "descriptor_only/v1",
+      "roles": {},
+      "source": "IBM_AMLSim_typology_registry",
+      "status": "active",
+      "version": 1
+    },
+    {
+      "constraints": {
+        "minimum_fan": 3
+      },
+      "experience_id": "ibm_baseline_gather_scatter",
+      "family": "gather_scatter",
+      "fingerprint": {
+        "wl_hash": "baseline::gather_scatter"
+      },
+      "lineage": {
+        "mutation_ops": [],
+        "parent": null,
+        "round": 0
+      },
+      "matcher_kind": "single_hub_gather_scatter/v1",
+      "roles": {
+        "hub": {
+          "count": 1
+        },
+        "sinks": {
+          "min_count": 3
+        },
+        "sources": {
+          "min_count": 3
+        }
+      },
+      "source": "IBM_AMLSim_typology_registry",
+      "status": "active",
+      "version": 1
+    },
+    {
+      "agent_hypothesis_view": {
+        "content": {
+          "expected_invariants": [
+            "Number of sources ≥ 3, sink nodes ≥ 3",
+            "Exactly one collector and one relay node",
+            "Temporal order: sources → collector → relay → sinks",
+            "Bridge ratio > 0.9 on incoming and outgoing relay edges"
+          ],
+          "hypothesis_name": "Gather-Relay-Broadcast Flow",
+          "limitations": [
+            "Assumes a single relay path; multiple relays would alter pattern",
+            "Does not capture reversed or cyclic flows",
+            "Role assignment depends on structural alignment; may not generalize to overlapping communities"
+          ],
+          "mechanism": "Multiple source nodes concentrate traffic into a single collector, which passes aggregated data to one relay node; the relay then fans out to at least three sink nodes. The high bridge ratio (≥0.95) indicates that nearly all edges cross distinct clusters or communities, enforcing a strict sequential dependency from sources through collector and relay to sinks."
+        },
+        "model": "deepseek/deepseek-v4-flash",
+        "non_executable": true
+      },
+      "causal_invariants": [
+        {
+          "intervention_type": "remove_edges",
+          "minimum_expected_score_drop": 1.0,
+          "name": "bridge_removal"
+        },
+        {
+          "intervention_type": "rewire_edges",
+          "minimum_expected_score_drop": 1.0,
+          "name": "degree_preserving_rewire"
+        },
+        {
+          "intervention_type": "shuffle_timestamps",
+          "minimum_expected_score_drop": 0.75,
+          "name": "temporal_reversal"
+        },
+        {
+          "intervention_type": "permute_amounts",
+          "minimum_expected_score_drop": 0.65,
+          "name": "amount_permutation"
+        }
+      ],
+      "compiler": {
+        "canonical_observations": {
+          "bridge_in_ratio": 0.95,
+          "context_edge_ratio": 0.222222,
+          "duration_hours": 1.116667,
+          "out_bridge_ratio": 0.947368
+        },
+        "name": "ccem_rule_compiler",
+        "version": "0.2.0"
+      },
+      "constraints": {
+        "allow_decoy_edges": true,
+        "flow_ratio": [
+          0.6,
+          1.4
+        ],
+        "max_decoy_ratio": 0.25,
+        "max_duration_hours": 72.0
+      },
+      "experience_hash": "3c13cbca7497c7a463747aa885d9ef789fc594dfe2209bc5eceaa8b34ff53665",
+      "experience_id": "ccem_relay_bridge_gather_scatter_4ac4df971c",
+      "family": "relay_bridge_gather_scatter",
+      "fingerprint": {
+        "degree_signature": "sources:3|collector:1|relay:1|sinks:3",
+        "temporal_order": "gather<bridge<scatter",
+        "wl_hash": "4ac4df971c0fce55010f51763388de9662ea297d6b211777cfa1e6e60e84075d"
+      },
+      "lineage": {
+        "generator_version": "0.2.0",
+        "mutation_ops": [
+          "split_hub",
+          "add_delay",
+          "inject_decoy_edges"
+        ],
+        "parent": "gather_scatter",
+        "round": 1
+      },
+      "matcher_kind": "relay_bridge_gather_scatter/v1",
+      "required_edges": [
+        [
+          "sources",
+          "collector"
+        ],
+        [
+          "collector",
+          "relay"
+        ],
+        [
+          "relay",
+          "sinks"
+        ]
+      ],
+      "roles": {
+        "collector": {
+          "count": 1
+        },
+        "relay": {
+          "count": 1
+        },
+        "sinks": {
+          "min_count": 3,
+          "observed_count": 3
+        },
+        "sources": {
+          "min_count": 3,
+          "observed_count": 3
+        }
+      },
+      "status": "active",
+      "validation_certificate": {
+        "ci95": [
+          0.18,
+          0.44
+        ],
+        "decision_rule": "model-behavior-counterfactual-acceptance/v0.2",
+        "effect_size": 0.31,
+        "method": "deterministic.counterfactual_replay",
+        "parameter_hash": "8714a6381acc4d4037121b4541fdff881ed7c19c346f4f4eaea5afd6b28f8ecf",
+        "q_value": 0.012,
+        "validation_target": "model_behavior",
+        "validator_version": "0.2.0"
+      },
+      "version": 1
+    }
+  ],
+  "history": [
+    {
+      "event_hash": "b0c636623c3a9ff1c2c11641e809c88c8efed76f2ac6293f3390c19326050aa4",
+      "experience_id": "ccem_relay_bridge_gather_scatter_4ac4df971c",
+      "library_version": 1,
+      "operation": "ADD",
+      "replay": {
+        "all_gates_passed": true,
+        "augmented_positive_matched": true,
+        "counterfactual_count": 4,
+        "counterfactual_false_positives": 0,
+        "positive_matched": true,
+        "suggest_specialization": false
+      }
+    }
+  ],
+  "knowledge_graph": {
+    "design": "G_t_transaction_facts_separate_from_K_t_experiences",
+    "edges": [
+      {
+        "dst": "ibm_baseline_fan_in",
+        "relation": "defines_typology",
+        "src": "IBM_AMLSim"
+      },
+      {
+        "dst": "ibm_baseline_fan_out",
+        "relation": "defines_typology",
+        "src": "IBM_AMLSim"
+      },
+      {
+        "dst": "ibm_baseline_cycle",
+        "relation": "defines_typology",
+        "src": "IBM_AMLSim"
+      },
+      {
+        "dst": "ibm_baseline_bipartite",
+        "relation": "defines_typology",
+        "src": "IBM_AMLSim"
+      },
+      {
+        "dst": "ibm_baseline_stack",
+        "relation": "defines_typology",
+        "src": "IBM_AMLSim"
+      },
+      {
+        "dst": "ibm_baseline_random",
+        "relation": "defines_typology",
+        "src": "IBM_AMLSim"
+      },
+      {
+        "dst": "ibm_baseline_scatter_gather",
+        "relation": "defines_typology",
+        "src": "IBM_AMLSim"
+      },
+      {
+        "dst": "ibm_baseline_gather_scatter",
+        "relation": "defines_typology",
+        "src": "IBM_AMLSim"
+      },
+      {
+        "dst": "ccem_relay_bridge_gather_scatter_4ac4df971c",
+        "relation": "parent_of",
+        "src": "ibm_baseline_gather_scatter"
+      },
+      {
+        "dst": "sources",
+        "relation": "requires_role",
+        "src": "ccem_relay_bridge_gather_scatter_4ac4df971c"
+      },
+      {
+        "dst": "collector",
+        "relation": "requires_role",
+        "src": "ccem_relay_bridge_gather_scatter_4ac4df971c"
+      },
+      {
+        "dst": "relay",
+        "relation": "requires_role",
+        "src": "ccem_relay_bridge_gather_scatter_4ac4df971c"
+      },
+      {
+        "dst": "sinks",
+        "relation": "requires_role",
+        "src": "ccem_relay_bridge_gather_scatter_4ac4df971c"
+      },
+      {
+        "dst": "certificate::3c13cbca7497",
+        "relation": "validated_by",
+        "src": "ccem_relay_bridge_gather_scatter_4ac4df971c"
+      }
+    ]
+  },
+  "library_hash": "1b6ea37af310694f15d9b811721e310ba02c66a69497b19f9ed4d59cdd11de90",
+  "library_version": 1,
+  "schema_version": "ccem.detector_library/v0.2"
+}

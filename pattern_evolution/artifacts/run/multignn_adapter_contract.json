@@ -1,0 +1,32 @@
+{
+  "derived_fields": [],
+  "edge_attr_shape": [
+    9,
+    4
+  ],
+  "edge_count": 9,
+  "edge_index_shape": [
+    2,
+    9
+  ],
+  "node_count": 9,
+  "oracle_present": false,
+  "pyg_runtime_available": false,
+  "torch_shapes": {
+    "edge_attr": [
+      9,
+      4
+    ],
+    "edge_index": [
+      2,
+      9
+    ],
+    "timestamps": [
+      9
+    ],
+    "x": [
+      9,
+      1
+    ]
+  }
+}

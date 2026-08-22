@@ -1,0 +1,270 @@
+{
+  "graph": {
+    "amount_mode": "dual_endpoint",
+    "directed": true,
+    "edges": [
+      {
+        "amount_received": 1000,
+        "amount_sent": 1000,
+        "base_amount": 1000,
+        "base_currency": "USD",
+        "causal_role": "supporting",
+        "dst": "IBM-HI-Proxy::B00::collector",
+        "edge_id": "mut_e01",
+        "mutation_role": "modified",
+        "parent_edge_ids": [
+          "base_e01"
+        ],
+        "payment_format": "ACH",
+        "receiving_currency": "USD",
+        "scope": "candidate",
+        "sent_currency": "USD",
+        "src": "IBM-HI-Proxy::B00::s1",
+        "timestamp": 0,
+        "transaction_type": "TRANSFER"
+      },
+      {
+        "amount_received": 1100,
+        "amount_sent": 1100,
+        "base_amount": 1100,
+        "base_currency": "USD",
+        "causal_role": "supporting",
+        "dst": "IBM-HI-Proxy::B00::collector",
+        "edge_id": "mut_e02",
+        "mutation_role": "modified",
+        "parent_edge_ids": [
+          "base_e02"
+        ],
+        "payment_format": "ACH",
+        "receiving_currency": "USD",
+        "scope": "candidate",
+        "sent_currency": "USD",
+        "src": "IBM-HI-Proxy::B00::s2",
+        "timestamp": 60,
+        "transaction_type": "TRANSFER"
+      },
+      {
+        "amount_received": 900,
+        "amount_sent": 900,
+        "base_amount": 900,
+        "base_currency": "USD",
+        "causal_role": "supporting",
+        "dst": "IBM-HI-Proxy::B00::collector",
+        "edge_id": "mut_e03",
+        "mutation_role": "modified",
+        "parent_edge_ids": [
+          "base_e03"
+        ],
+        "payment_format": "ACH",
+        "receiving_currency": "USD",
+        "scope": "candidate",
+        "sent_currency": "USD",
+        "src": "IBM-HI-Proxy::B00::s3",
+        "timestamp": 120,
+        "transaction_type": "TRANSFER"
+      },
+      {
+        "amount_received": 2850,
+        "amount_sent": 2850,
+        "base_amount": 2850,
+        "base_currency": "USD",
+        "causal_role": "essential",
+        "dst": "IBM-HI-Proxy::B00::relay",
+        "edge_id": "mut_e04",
+        "mutation_role": "added",
+        "parent_edge_ids": [
+          "base_hub_split"
+        ],
+        "payment_format": "ACH",
+        "receiving_currency": "USD",
+        "scope": "candidate",
+        "sent_currency": "USD",
+        "src": "IBM-HI-Proxy::B00::collector",
+        "timestamp": 3600,
+        "transaction_type": "TRANSFER"
+      },
+      {
+        "amount_received": 900,
+        "amount_sent": 900,
+        "base_amount": 900,
+        "base_currency": "USD",
+        "causal_role": "supporting",
+        "dst": "IBM-HI-Proxy::B00::d1",
+        "edge_id": "mut_e05",
+        "mutation_role": "modified",
+        "parent_edge_ids": [
+          "base_e04"
+        ],
+        "payment_format": "ACH",
+        "receiving_currency": "USD",
+        "scope": "candidate",
+        "sent_currency": "USD",
+        "src": "IBM-HI-Proxy::B00::relay",
+        "timestamp": 3000,
+        "transaction_type": "TRANSFER"
+      },
+      {
+        "amount_received": 850,
+        "amount_sent": 850,
+        "base_amount": 850,
+        "base_currency": "USD",
+        "causal_role": "supporting",
+        "dst": "IBM-HI-Proxy::B00::d2",
+        "edge_id": "mut_e06",
+        "mutation_role": "modified",
+        "parent_edge_ids": [
+          "base_e05"
+        ],
+        "payment_format": "ACH",
+        "receiving_currency": "USD",
+        "scope": "candidate",
+        "sent_currency": "USD",
+        "src": "IBM-HI-Proxy::B00::relay",
+        "timestamp": 3060,
+        "transaction_type": "TRANSFER"
+      },
+      {
+        "amount_received": 950,
+        "amount_sent": 950,
+        "base_amount": 950,
+        "base_currency": "USD",
+        "causal_role": "supporting",
+        "dst": "IBM-HI-Proxy::B00::d3",
+        "edge_id": "mut_e07",
+        "mutation_role": "modified",
+        "parent_edge_ids": [
+          "base_e06"
+        ],
+        "payment_format": "ACH",
+        "receiving_currency": "USD",
+        "scope": "candidate",
+        "sent_currency": "USD",
+        "src": "IBM-HI-Proxy::B00::relay",
+        "timestamp": 3120,
+        "transaction_type": "TRANSFER"
+      },
+      {
+        "amount_received": 120,
+        "amount_sent": 120,
+        "base_amount": 120,
+        "base_currency": "USD",
+        "causal_role": "nuisance",
+        "dst": "IBM-HI-Proxy::B00::normal",
+        "edge_id": "mut_e08",
+        "mutation_role": "added",
+        "parent_edge_ids": [
+          "base_decoy_seed"
+        ],
+        "payment_format": "ACH",
+        "receiving_currency": "USD",
+        "scope": "context",
+        "sent_currency": "USD",
+        "src": "IBM-HI-Proxy::B00::collector",
+        "timestamp": 1800,
+        "transaction_type": "TRANSFER"
+      },
+      {
+        "amount_received": 100,
+        "amount_sent": 100,
+        "base_amount": 100,
+        "base_currency": "USD",
+        "causal_role": "nuisance",
+        "dst": "IBM-HI-Proxy::B00::relay",
+        "edge_id": "mut_e09",
+        "mutation_role": "added",
+        "parent_edge_ids": [
+          "base_decoy_seed"
+        ],
+        "payment_format": "ACH",
+        "receiving_currency": "USD",
+        "scope": "context",
+        "sent_currency": "USD",
+        "src": "IBM-HI-Proxy::B00::normal",
+        "timestamp": 3300,
+        "transaction_type": "TRANSFER"
+      }
+    ],
+    "multigraph": true,
+    "nodes": [
+      {
+        "attrs": {},
+        "node_id": "IBM-HI-Proxy::B00::s1"
+      },
+      {
+        "attrs": {},
+        "node_id": "IBM-HI-Proxy::B00::s2"
+      },
+      {
+        "attrs": {},
+        "node_id": "IBM-HI-Proxy::B00::s3"
+      },
+      {
+        "attrs": {},
+        "node_id": "IBM-HI-Proxy::B00::collector"
+      },
+      {
+        "attrs": {},
+        "node_id": "IBM-HI-Proxy::B00::relay"
+      },
+      {
+        "attrs": {},
+        "node_id": "IBM-HI-Proxy::B00::d1"
+      },
+      {
+        "attrs": {},
+        "node_id": "IBM-HI-Proxy::B00::d2"
+      },
+      {
+        "attrs": {},
+        "node_id": "IBM-HI-Proxy::B00::d3"
+      },
+      {
+        "attrs": {},
+        "node_id": "IBM-HI-Proxy::B00::normal"
+      }
+    ],
+    "time_origin": "2022-09-01T00:00:00Z",
+    "time_precision": 1.0,
+    "time_unit": "second"
+  },
+  "intervention": {
+    "random_seed": 42,
+    "timestamp_mapping": {
+      "mut_e04": 3600,
+      "mut_e05": 3000,
+      "mut_e06": 3060,
+      "mut_e07": 3120
+    },
+    "type": "shuffle_timestamps"
+  },
+  "match_result": {
+    "detector_id": "ccem_relay_bridge_gather_scatter_4ac4df971c",
+    "evidence": {
+      "bridge_edge_id": "mut_e04",
+      "bridge_in_ratio": 0.95,
+      "context_edge_ratio": 0.222222,
+      "duration_hours": 1.0,
+      "out_bridge_ratio": 0.947368
+    },
+    "failed_constraints": [
+      "temporal_partial_order"
+    ],
+    "matched": false,
+    "role_bindings": {
+      "collector": "IBM-HI-Proxy::B00::collector",
+      "relay": "IBM-HI-Proxy::B00::relay",
+      "sinks": [
+        "IBM-HI-Proxy::B00::d1",
+        "IBM-HI-Proxy::B00::d2",
+        "IBM-HI-Proxy::B00::d3"
+      ],
+      "sources": [
+        "IBM-HI-Proxy::B00::s1",
+        "IBM-HI-Proxy::B00::s2",
+        "IBM-HI-Proxy::B00::s3"
+      ]
+    },
+    "score": 0.857143
+  },
+  "name": "temporal_reversal"
+}

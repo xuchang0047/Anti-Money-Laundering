@@ -1,0 +1,96 @@
+{
+  "actual": {
+    "after_proxy_recall": 1,
+    "before_proxy_recall": 0,
+    "counterfactual_false_positive_count": 0,
+    "evolution_operation": "ADD",
+    "hypothesis_agent_status": "success",
+    "library_version": 1,
+    "old_pattern_regression": 0
+  },
+  "adapter_contract": {
+    "derived_fields": [],
+    "edge_attr_shape": [
+      9,
+      4
+    ],
+    "edge_count": 9,
+    "edge_index_shape": [
+      2,
+      9
+    ],
+    "node_count": 9,
+    "oracle_present": false,
+    "pyg_runtime_available": false,
+    "torch_shapes": {
+      "edge_attr": [
+        9,
+        4
+      ],
+      "edge_index": [
+        2,
+        9
+      ],
+      "timestamps": [
+        9
+      ],
+      "x": [
+        9,
+        1
+      ]
+    }
+  },
+  "artifacts": {
+    "candidate": "/home/bingqinshao/Multi-GNN/pattern_evolution/artifacts/proxies/candidate_subgraph_v0.2.json",
+    "hypothesis": "/home/bingqinshao/Multi-GNN/pattern_evolution/artifacts/run/hypothesis_agent_result.json",
+    "library_v0": "/home/bingqinshao/Multi-GNN/pattern_evolution/artifacts/library/detector_library_v0.json",
+    "library_v1": "/home/bingqinshao/Multi-GNN/pattern_evolution/artifacts/library/detector_library_v1.json",
+    "validated": "/home/bingqinshao/Multi-GNN/pattern_evolution/artifacts/proxies/validated_subgraph_v0.2.json",
+    "validation_report": "/home/bingqinshao/Multi-GNN/pattern_evolution/artifacts/proxies/validation_report_v0.2.json"
+  },
+  "expected": {
+    "after_proxy_recall": 1,
+    "before_proxy_recall": 0,
+    "counterfactual_false_positive_count": 0,
+    "evolution_operation": "ADD",
+    "hypothesis_agent_status": "success",
+    "library_version": 1,
+    "old_pattern_regression": 0
+  },
+  "experience_hash": "3c13cbca7497c7a463747aa885d9ef789fc594dfe2209bc5eceaa8b34ff53665",
+  "experience_id": "ccem_relay_bridge_gather_scatter_4ac4df971c",
+  "metrics": {
+    "after_evolution": {
+      "old_gather_scatter_detected": true,
+      "proxy_matches": [
+        "ccem_relay_bridge_gather_scatter_4ac4df971c"
+      ],
+      "proxy_recall": 1
+    },
+    "augmented_replay_passed": true,
+    "before_evolution": {
+      "old_gather_scatter_detected": true,
+      "proxy_matches": [],
+      "proxy_recall": 0
+    },
+    "counterfactual_false_positive_count": 0,
+    "evolution_operation": "ADD",
+    "hypothesis_agent_status": "success",
+    "library_version": 1,
+    "old_pattern_regression": 0,
+    "positive_replay_passed": true
+  },
+  "pipeline": [
+    "CandidateSubgraphPackage",
+    "ValidationReport",
+    "ValidatedSubgraphPackage",
+    "HypothesisGenerationAgent",
+    "Canonicalizer",
+    "RuleCompiler",
+    "CounterfactualReplay",
+    "ExperienceLibrary",
+    "NextRoundDetection",
+    "MultiGNNAdapter"
+  ],
+  "status": "passed"
+}
