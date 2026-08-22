@@ -1,0 +1,46 @@
+{
+  "prototype_notice": "All values are prototype heuristics for synthetic robustness testing; they are not IBM or regulatory thresholds.",
+  "interface": {
+    "source_dataset_id": "synthetic-scatter-gather",
+    "generator_version": "0.2.0",
+    "time_unit": "second",
+    "time_precision": 1.0,
+    "time_quantization": "ROUND_HALF_UP",
+    "missing_bank_id": "__NO_BANK__"
+  },
+  "retrieval": {
+    "min_fan_out": 3,
+    "min_converging_intermediates": 3,
+    "max_time_span_hours": 72.0
+  },
+  "detector": {
+    "min_fan_out": 3,
+    "min_fan_in": 3,
+    "max_time_span_hours": 24.0,
+    "min_flow_through_ratio": 0.9
+  },
+  "mutations": {
+    "temporal_stretch": {
+      "downstream_delay_hours": 48.0
+    },
+    "path_extension": {
+      "relay_delay_hours": 1.0
+    },
+    "amount_perturbation": {
+      "noise_fraction": 0.25,
+      "minimum_amount": 0.01,
+      "seed": 11
+    }
+  },
+  "sweep": {
+    "temporal_stretch": {
+      "downstream_delay_hours": [0.0, 6.0, 12.0, 24.0, 48.0, 72.0]
+    },
+    "path_extension": {
+      "extra_layers": [0, 1, 2, 3]
+    },
+    "amount_perturbation": {
+      "noise_levels": [0.0, 0.1, 0.25, 0.5]
+    }
+  }
+}

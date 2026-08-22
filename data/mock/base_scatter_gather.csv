@@ -1,0 +1,7 @@
+transaction_id,timestamp,source,target,amount,pattern_id,pattern_type,synthetic_label
+tx_001,2022-09-01T00:00:00Z,A,B,100.0,synthetic_sg_001,scatter_gather,synthetic suspicious pattern
+tx_002,2022-09-01T00:10:00Z,A,C,110.0,synthetic_sg_001,scatter_gather,synthetic suspicious pattern
+tx_003,2022-09-01T00:20:00Z,A,D,90.0,synthetic_sg_001,scatter_gather,synthetic suspicious pattern
+tx_004,2022-09-01T02:00:00Z,B,X,95.0,synthetic_sg_001,scatter_gather,synthetic suspicious pattern
+tx_005,2022-09-01T02:10:00Z,C,X,104.5,synthetic_sg_001,scatter_gather,synthetic suspicious pattern
+tx_006,2022-09-01T02:20:00Z,D,X,85.5,synthetic_sg_001,scatter_gather,synthetic suspicious pattern

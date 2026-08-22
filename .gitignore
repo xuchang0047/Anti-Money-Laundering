@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 
 # Local datasets, experiment outputs, and trained weights
-data/
+data/*
+!data/mock/
+!data/mock/**
+outputs/
 logs/
 checkpoints/
