@@ -1,0 +1,52 @@
+{
+  "Hypothesis": "在可观测历史行为相近的账户中，当日发生快速资金中转（收款后1小时内以近似金额、同币种转出）会提高该账户次日涉及洗钱标记交易的概率。",
+  "Causal Effect": {
+    "treatment": "rapid_transfer",
+    "estimand": "ATE risk difference",
+    "estimate": 0.21697213462359266,
+    "ci95_cluster_bootstrap": [
+      0.18771092822984517,
+      0.24998218412672504
+    ],
+    "bootstrap_standard_error": 0.016831883836146026,
+    "bootstrap_simulations": 50,
+    "treated_rate_unadjusted": 0.2911392405063291,
+    "control_rate_unadjusted": 0.0691415313225058,
+    "n": 5100,
+    "treated_n": 790,
+    "control_n": 4310
+  },
+  "Validation": {
+    "propensity_overlap_0.05_0.95": 1.0,
+    "max_unstabilized_ipw": 11.753399423588839,
+    "refuters": {
+      "placebo_treatment_refuter": {
+        "summary": "Permuted treatment; 20 fresh propensity-model refits",
+        "new_effect": -0.0005843693777529406,
+        "simulation_std": 0.012348474753376689
+      },
+      "random_common_cause": {
+        "summary": "Added random common cause; 20 fresh propensity-model refits",
+        "new_effect": 0.21690686839016396,
+        "simulation_std": 0.00032752104918985976
+      },
+      "data_subset_refuter": {
+        "summary": "80% row subset; 20 fresh propensity-model refits",
+        "new_effect": 0.22043147221191753,
+        "simulation_std": 0.006978656266938462
+      }
+    }
+  },
+  "Confidence": {
+    "level": "HIGH",
+    "checks": {
+      "adequate_sample": true,
+      "good_overlap": true,
+      "adequate_refuter_simulations": true,
+      "placebo_treatment_refuter_stable": true,
+      "random_common_cause_stable": true,
+      "data_subset_refuter_stable": true
+    },
+    "note": "评级不是后验概率，且不能排除未观测混杂。"
+  }
+}

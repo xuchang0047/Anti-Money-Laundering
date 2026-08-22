@@ -1,0 +1,249 @@
+{
+  "schema_version": "ccem.validated_subgraph/v0.3",
+  "package_type": "validated_subgraph",
+  "case_id": "case_demo_rapid_001",
+  "graph": {
+    "directed": true,
+    "multigraph": true,
+    "time_unit": "second",
+    "time_precision": 1.0,
+    "time_quantization": "ROUND_HALF_UP",
+    "time_origin": "2026-01-03T00:00:00Z",
+    "amount_mode": "dual_endpoint",
+    "nodes": [
+      {
+        "node_id": "DEMO::__NO_BANK__::source",
+        "attrs": {}
+      },
+      {
+        "node_id": "DEMO::__NO_BANK__::middle",
+        "attrs": {}
+      },
+      {
+        "node_id": "DEMO::__NO_BANK__::target",
+        "attrs": {}
+      }
+    ],
+    "edges": [
+      {
+        "edge_id": "source_e_001__mut__attack_demo_001__0",
+        "src": "DEMO::__NO_BANK__::source",
+        "dst": "DEMO::__NO_BANK__::middle",
+        "timestamp": 100,
+        "base_amount": 1000.0,
+        "base_currency": "USD",
+        "amount_sent": 1000.0,
+        "sent_currency": "USD",
+        "amount_received": 1000.0,
+        "receiving_currency": "USD",
+        "transaction_type": "TRANSFER",
+        "payment_format": "ACH",
+        "scope": "candidate",
+        "parent_edge_ids": [
+          "source_e_001"
+        ],
+        "mutation_role": "modified"
+      },
+      {
+        "edge_id": "source_e_002__mut__attack_demo_001__1",
+        "src": "DEMO::__NO_BANK__::middle",
+        "dst": "DEMO::__NO_BANK__::target",
+        "timestamp": 1000,
+        "base_amount": 950.0,
+        "base_currency": "USD",
+        "amount_sent": 950.0,
+        "sent_currency": "USD",
+        "amount_received": 950.0,
+        "receiving_currency": "USD",
+        "transaction_type": "TRANSFER",
+        "payment_format": "ACH",
+        "scope": "candidate",
+        "parent_edge_ids": [
+          "source_e_002"
+        ],
+        "mutation_role": "modified"
+      }
+    ]
+  },
+  "analysis_context": {
+    "requested_validation_target": "aml_outcome",
+    "suggested_treatment": "rapid_transfer",
+    "analysis_unit": "account_day",
+    "anchor_time": "2026-01-03T00:00:00Z",
+    "lookback_days": 7,
+    "outcome_days": 1,
+    "population_artifact": {
+      "artifact_id": "demo-ibm-aml-v03",
+      "format": "csv",
+      "uri": "artifact://demo-ibm-aml-v03",
+      "sha256": "a111f47d2917489d6ff75733e6a3a9b2135c7462842fce8c784761c1c1bdce38",
+      "dataset_id": "DEMO"
+    },
+    "outcome_ref": {
+      "artifact_id": "demo-ibm-aml-v03",
+      "join_key": "transaction_row",
+      "label_field": "Is Laundering",
+      "allowed_consumers": [
+        "CausalValidator",
+        "FinalEvaluator"
+      ]
+    }
+  },
+  "mutation": {
+    "attack_id": "attack_demo_001",
+    "attack_type": "temporal_stretch",
+    "parameters": {
+      "delay_seconds": 900
+    },
+    "attack_success": true,
+    "base_retrieved": true,
+    "mutated_retrieved": false,
+    "failure_stage": "retrieval",
+    "candidate_source": "mutation_scope",
+    "old_rule_result": {
+      "before_attack": true,
+      "after_attack": false
+    },
+    "base_case_features": {},
+    "mutated_case_features": {},
+    "stable_features": [
+      "amount_continuity",
+      "currency"
+    ],
+    "changed_features": [
+      "time_gap"
+    ],
+    "failed_rule_conditions": [
+      "retrieval_rank_below_threshold"
+    ],
+    "edge_lineage": [
+      {
+        "edge_id": "source_e_001__mut__attack_demo_001__0",
+        "parent_edge_ids": [
+          "source_e_001"
+        ],
+        "mutation_role": "modified"
+      },
+      {
+        "edge_id": "source_e_002__mut__attack_demo_001__1",
+        "parent_edge_ids": [
+          "source_e_002"
+        ],
+        "mutation_role": "modified"
+      }
+    ]
+  },
+  "provenance": {
+    "round": 1,
+    "generator": "candidate-package-builder/v0.3",
+    "parent_motif": "rapid_transfer",
+    "mutation_ops": [
+      "add_delay"
+    ],
+    "source_dataset_id": "DEMO",
+    "source_artifact_sha256": "a111f47d2917489d6ff75733e6a3a9b2135c7462842fce8c784761c1c1bdce38",
+    "generator_version": "0.3.0",
+    "created_at": "2026-08-22T00:00:00Z",
+    "random_seed": 42
+  },
+  "validation": {
+    "schema_version": "ccem.validation_report/v0.3",
+    "case_id": "case_demo_rapid_001",
+    "attack_id": "attack_demo_001",
+    "accepted": true,
+    "decision_rule": "aml-causal-acceptance/v0.3",
+    "decision_reasons": [
+      "expected_effect_direction",
+      "ci_excludes_threshold",
+      "adequate_overlap",
+      "acceptable_weights",
+      "refuters_stable",
+      "adequate_group_sample",
+      "adequate_refuter_simulations",
+      "adequate_cluster_bootstrap"
+    ],
+    "decision_checks": {
+      "expected_effect_direction": true,
+      "ci_excludes_threshold": true,
+      "adequate_overlap": true,
+      "acceptable_weights": true,
+      "refuters_stable": true,
+      "adequate_group_sample": true,
+      "adequate_refuter_simulations": true,
+      "adequate_cluster_bootstrap": true
+    },
+    "validation_target": "aml_outcome",
+    "method": "dowhy.backdoor.propensity_score_weighting",
+    "analysis_unit": "account_day",
+    "treatment": "rapid_transfer",
+    "outcome": "next_day_laundering",
+    "estimand": "ATE_risk_difference",
+    "expected_direction": "positive",
+    "minimum_effect": 0.0,
+    "aggregate": {
+      "effect_size": 0.21697213462359266,
+      "ci95_cluster_bootstrap": [
+        0.18771092822984517,
+        0.24998218412672504
+      ],
+      "bootstrap_standard_error": 0.016831883836146026,
+      "sample_size": 5100,
+      "treated_n": 790,
+      "control_n": 4310
+    },
+    "adjustment_set": [
+      "hist_event_count",
+      "hist_in_amount",
+      "hist_out_amount",
+      "hist_in_count",
+      "hist_out_count",
+      "hist_cross_bank_count",
+      "hist_laundering_count",
+      "hist_counterparty_days",
+      "hist_currency_days",
+      "day_of_week",
+      "day_index"
+    ],
+    "diagnostics": {
+      "propensity_overlap_0.05_0.95": 1.0,
+      "max_unstabilized_ipw": 11.753399423588839,
+      "amount_evidence": "dual_endpoint",
+      "candidate_membership": {
+        "treatment": "rapid_transfer",
+        "member_count": 1,
+        "identified_instance_count": 1,
+        "identified_types": [
+          "chain"
+        ]
+      }
+    },
+    "refuters": {
+      "placebo_treatment_refuter": {
+        "summary": "Permuted treatment; 20 fresh propensity-model refits",
+        "new_effect": -0.0005843693777529406,
+        "simulation_std": 0.012348474753376689
+      },
+      "random_common_cause": {
+        "summary": "Added random common cause; 20 fresh propensity-model refits",
+        "new_effect": 0.21690686839016396,
+        "simulation_std": 0.00032752104918985976
+      },
+      "data_subset_refuter": {
+        "summary": "80% row subset; 20 fresh propensity-model refits",
+        "new_effect": 0.22043147221191753,
+        "simulation_std": 0.006978656266938462
+      }
+    },
+    "counterfactuals": [],
+    "warnings": [
+      "Causal conclusions remain conditional on no unmeasured confounding."
+    ],
+    "source_artifact": {
+      "artifact_id": "demo-ibm-aml-v03",
+      "format": "csv",
+      "sha256": "a111f47d2917489d6ff75733e6a3a9b2135c7462842fce8c784761c1c1bdce38"
+    },
+    "validator_version": "subgraph-dowhy-validator/0.3.0",
+    "created_at": "2026-08-22T05:49:33.731823Z"
+  }
+}

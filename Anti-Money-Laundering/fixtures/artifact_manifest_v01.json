@@ -1,0 +1,10 @@
+{
+  "schema_version": "ccem.artifact_manifest/v0.1",
+  "artifacts": {
+    "demo-ibm-aml-v03": {
+      "path": "../data/demo_ibm_aml.csv",
+      "format": "csv",
+      "sha256": "a111f47d2917489d6ff75733e6a3a9b2135c7462842fce8c784761c1c1bdce38"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "attack_id": "attack_demo_001",
+  "attack_type": "temporal_stretch",
+  "attack_success": true,
+  "base_retrieved": true,
+  "mutated_retrieved": false,
+  "failure_stage": "retrieval",
+  "candidate_source": "mutation_scope",
+  "old_rule_result": {"before_attack": true, "after_attack": false},
+  "failed_rule_conditions": ["retrieval_rank_below_threshold"],
+  "edge_lineage": [
+    {
+      "edge_id": "source_e_001__mut__attack_demo_001__0",
+      "parent_edge_ids": ["source_e_001"],
+      "mutation_role": "modified"
+    },
+    {
+      "edge_id": "source_e_002__mut__attack_demo_001__1",
+      "parent_edge_ids": ["source_e_002"],
+      "mutation_role": "modified"
+    }
+  ]
+}

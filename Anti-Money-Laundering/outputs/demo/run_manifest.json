@@ -1,0 +1,34 @@
+{
+  "pipeline_version": "subgraph-dowhy-validator/0.3.0",
+  "case_id": "case_demo_rapid_001",
+  "parameters": {
+    "treatment": null,
+    "lookback_days": 7,
+    "rapid_hours": 1.0,
+    "min_ratio": 0.8,
+    "max_ratio": 1.2,
+    "motif_hours": 1.0,
+    "fan_threshold": 3,
+    "motif_min_ratio": 0.5,
+    "motif_max_ratio": 1.2,
+    "refute_simulations": 20,
+    "bootstrap_simulations": 50,
+    "seed": 42,
+    "expected_direction": "positive",
+    "minimum_effect": 0.0,
+    "max_rows": null
+  },
+  "inputs": {
+    "candidate_sha256": "e4542952639fe7fecfc39ca34ddb1eb9741d3d10e245dfe48ffa4a5486fd983a",
+    "artifact_id": "demo-ibm-aml-v03",
+    "artifact_sha256": "a111f47d2917489d6ff75733e6a3a9b2135c7462842fce8c784761c1c1bdce38"
+  },
+  "outputs": {
+    "panel": "outputs/demo/account_day_panel.parquet",
+    "identified_subgraphs": "outputs/demo/identified_subgraphs.parquet",
+    "causal_result": "outputs/demo/causal_result.json",
+    "validation_report": "outputs/demo/validation_report_v03.json",
+    "validated_subgraph": "outputs/demo/validated_subgraph_v03.json"
+  },
+  "accepted": true
+}

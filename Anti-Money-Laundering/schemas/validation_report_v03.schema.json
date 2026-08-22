@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ccem.validation_report/v0.3",
+  "type": "object",
+  "required": ["schema_version", "case_id", "accepted", "validation_target", "method", "aggregate", "diagnostics", "validator_version"],
+  "properties": {
+    "schema_version": {"const": "ccem.validation_report/v0.3"},
+    "case_id": {"type": "string"},
+    "accepted": {"type": "boolean"},
+    "validation_target": {"const": "aml_outcome"},
+    "method": {"type": "string"},
+    "aggregate": {"type": "object"},
+    "diagnostics": {"type": "object"},
+    "validator_version": {"type": "string"}
+  }
+}

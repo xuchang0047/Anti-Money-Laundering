@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ccem.candidate_subgraph/v0.3",
+  "type": "object",
+  "required": ["schema_version", "package_type", "case_id", "graph", "analysis_context", "provenance"],
+  "properties": {
+    "schema_version": {"const": "ccem.candidate_subgraph/v0.3"},
+    "package_type": {"const": "candidate_subgraph"},
+    "case_id": {"type": "string", "minLength": 1},
+    "graph": {
+      "type": "object",
+      "required": ["directed", "multigraph", "time_unit", "time_precision", "time_quantization", "time_origin", "amount_mode", "nodes", "edges"],
+      "properties": {
+        "directed": {"const": true},
+        "multigraph": {"const": true},
+        "time_unit": {"const": "second"},
+        "time_precision": {"const": 1.0},
+        "time_quantization": {"const": "ROUND_HALF_UP"},
+        "time_origin": {"type": "string", "format": "date-time"},
+        "amount_mode": {"enum": ["base_only", "dual_endpoint"]},
+        "nodes": {"type": "array", "minItems": 1},
+        "edges": {"type": "array", "minItems": 1}
+      }
+    },
+    "analysis_context": {"type": "object"},
+    "mutation": {"type": ["object", "null"]},
+    "provenance": {"type": "object"}
+  },
+  "not": {"required": ["validation"]}
+}

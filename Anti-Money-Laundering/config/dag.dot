@@ -1,0 +1,26 @@
+digraph {
+    hist_event_count -> rapid_transfer;
+    hist_event_count -> laundering;
+    hist_in_amount -> rapid_transfer;
+    hist_in_amount -> laundering;
+    hist_out_amount -> rapid_transfer;
+    hist_out_amount -> laundering;
+    hist_in_count -> rapid_transfer;
+    hist_in_count -> laundering;
+    hist_out_count -> rapid_transfer;
+    hist_out_count -> laundering;
+    hist_cross_bank_count -> rapid_transfer;
+    hist_cross_bank_count -> laundering;
+    hist_laundering_count -> rapid_transfer;
+    hist_laundering_count -> laundering;
+    hist_counterparty_days -> rapid_transfer;
+    hist_counterparty_days -> laundering;
+    hist_currency_days -> rapid_transfer;
+    hist_currency_days -> laundering;
+    day_of_week -> rapid_transfer;
+    day_of_week -> laundering;
+    day_index -> rapid_transfer;
+    day_index -> laundering;
+    rapid_transfer -> laundering;
+}
+
